@@ -1,0 +1,223 @@
+:root {
+  --neon-blue: #0ff0fc;
+  --neon-pink: #ff2a6d;
+  --dark-bg: #0a0a12;
+  --grid-color: rgba(15, 240, 252, 0.05);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--dark-bg);
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 18px;
+}
+
+
+.cyber-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  border: 2px solid var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue);
+  background-color: rgba(10, 10, 18, 0.8);
+}
+
+.cyber-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.cyber-timer {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.cyber-coin {
+  width: 60px;
+  height: 60px;
+  background-image: url('../images/coin0.png');
+  background-size: contain;
+  filter: drop-shadow(0 0 5px var(--neon-pink));
+}
+
+.cyber-description {
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  font-size: 1.1rem;
+  color: #ccc;
+  padding: 0 20px;
+}
+
+.cyber-nav, .cyber-main-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.cyber-btn {
+  padding: 12px 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.cyber-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.cyber-btn:hover::before {
+  left: 100%;
+}
+
+.cyber-btn.disabled {
+  color: #555;
+  cursor: not-allowed;
+  border: 1px solid #333;
+}
+
+.cyber-btn.social {
+  border: 1px solid var(--neon-blue);
+  color: var(--neon-blue);
+}
+
+.cyber-btn.main {
+  border: 1px solid var(--neon-pink);
+  color: var(--neon-pink);
+  font-size: 1.2rem;
+  padding: 15px 30px;
+}
+
+.cyber-btn:hover:not(.disabled) {
+  box-shadow: 0 0 10px currentColor;
+}
+
+.cyber-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.cyber-icon {
+  width: 18px;
+  filter: invert(1);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.cyber-icon:hover {
+  opacity: 1;
+}
+
+.cyber-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Coin animation */
+#coin.spinning {
+  animation: flip 4s infinite linear, glow 0.5s infinite alternate;
+}
+
+@keyframes flip {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(-360deg); }
+}
+
+@keyframes glow {
+  from { filter: drop-shadow(0 0 5px var(--neon-pink)); }
+  to { filter: drop-shadow(0 0 15px var(--neon-pink)); }
+}
+
+#coin.finished {
+  transform: rotateZ(-90deg);
+  filter: drop-shadow(0 0 10px var(--neon-blue));
+}
+
+/* Добавляем в конец файла оригинальные стили для монетки */
+#coin {
+  width: 100px;
+  height: 100px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 10px var(--neon-blue));
+}
+
+#coin.spinning {
+  animation: flip 4s infinite linear, glow-pulse 1s infinite alternate;
+}
+
+@keyframes flip {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0% { filter: drop-shadow(0 0 5px var(--neon-blue)); }
+  50% { filter: drop-shadow(0 0 15px var(--neon-pink)); }
+  100% { filter: drop-shadow(0 0 5px var(--neon-blue)); }
+}
+
+#coin.finished {
+  transform: rotateZ(-90deg);
+  filter: drop-shadow(0 0 15px var(--neon-blue));
+}
+
+/* Убираем старый стиль .cyber-coin */
+.cyber-coin {
+  /* Оставляем только необходимые стили */
+  display: block;
+  margin: 0 auto;
+}
